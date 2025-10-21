@@ -4,7 +4,7 @@ import { names } from "./models/employee.js";
 
 
 
-let a = mongoose.connect("mongodb://localhost:27017/Company")
+let a = mongoose.connect("mongodb+srv://datagenerator:datagenerator@data-generator.dzqjgup.mongodb.net/")
 
 
 const app = express()
