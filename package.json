@@ -1,0 +1,21 @@
+{
+  "name": "exercise-16",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon work.js",
+    "start": "node work.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.4",
+    "tailwindcss": "^4.1.11"
+  }
+}

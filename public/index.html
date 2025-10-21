@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-yellow-300">
+
+  <div class="container flex gap-24">
+    <div class="lside bg-gray-500 h-[111vh]  w-[50vw] text-center rounded-r-full"> <div class="flex gap-19 pr-10 pl-10 "><div id="left" class="flex flex-col gap-3"><div class=" hello flex justify-center"><b>No Data Yet ...</b></div></div><div id="left2" class="mt-[20px] flex flex-col gap-1.5"></div></div></div>
+    <div class="rside w-[40vw]  h-[100vh] flex flex-col content-center justify-between gap-4">
+      <h1 class="text-center text-4xl underline">Welcome To Dummy Data Generator</h1>
+      <h2 class="underline"> <b>Instructions:</b></h2>
+      <ul class="list-decimal">
+        <li>Click generate button to generate data.</li>
+        <li>10 Data records will be generated per click and if clicked twice the previous data will be overwritten by the new data.</li>
+        <li>Data will be displayed on the left side of screen and then saved in your local mongo database.</li>
+        
+      </ul>
+      <div class="flex justify-center  h-full">
+        <button id="generate"
+          class="h-11 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800  ">
+          <span
+            class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+            Generate
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let btn = document.getElementById("generate")
+    btn.addEventListener("click", async () => {
+      let a = await fetch('/generate', { method: "POST" });
+      let r = await a.json();
+      
+
+     
+      let left1 = document.getElementById("left")
+      let left2 = document.getElementById("left2")
+      left1.innerHTML = "";
+      left2.innerHTML = "";
+
+      r.forEach((item , index) => {
+        const div = document.createElement("div")
+        div.className = "bg-white rounded-2xl"
+        
+        div.innerHTML = ` <b> <u>Employee ${index + 1}: </u></b><br>
+      Name: ${item.name} <br>
+      Salary: ${item.salary} <br>
+      Language: ${item.language} <br>
+      City: ${item.city} <br>
+      Manager: ${item.isManager ? "Yes" : "No"}`;
+
+      if ((index+1) > 5) {
+      
+
+      div.className= " bg-white rounded-2xl  "
+      div.innerHTML = ` <b> <u> Employee ${index + 1}: </u> </b><br>
+      Name: ${item.name} <br>
+      Salary: ${item.salary} <br>
+      Language: ${item.language} <br>
+      City: ${item.city} <br>
+      Manager: ${item.isManager ? "Yes" : "No"}`;
+        left2.appendChild(div)
+      } else {
+        
+        left1.appendChild(div);
+      }
+      
+
+    
+        
+      });
+     
+    })
+  </script>
+</body>
+
+</html>
